@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ApexcifyTechnologys</title>
+  <meta name="description" content="A modern tech agency website template with smooth interactions, responsive design, and beautiful visuals." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            display: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif'],
+          },
+          colors: {
+            night: {
+              900: '#0A0D1A',
+              800: '#0E1324',
+              700: '#121937',
+              600: '#152049',
+            },
+            accent: {
+              300: '#7BD6FF',
+              400: '#49C2FF',
+              500: '#18AEFF',
+              600: '#0D8ED1',
+            },
+            neo: {
+              300: '#B097FF',
+              400: '#9A7CFF',
+              500: '#7E5DFF',
+              600: '#6B4AF5',
+            }
+          },
+          boxShadow: {
+            glow: '0 10px 30px rgba(24,174,255,0.25)',
+            soft: '0 10px 30px rgba(126,93,255,0.18)',
+          },
+          backgroundImage: {
+            'hero-gradient': 'radial-gradient(1200px 600px at 80% -10%, rgba(84,197,255,0.20), transparent 60%), radial-gradient(900px 500px at 10% -20%, rgba(126,93,255,0.22), transparent 60%), linear-gradient(180deg, #0B1022 0%, #0A0D1A 100%)',
+            'card-gradient': 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Subtle animated gradient orb */
+    .orb {
+      position: absolute;
+      filter: blur(80px);
+      opacity: 0.6;
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) scale(1); }
+      100% { transform: translateY(-20px) translateX(10px) scale(1.05); }
+    }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(14px) scale(0.98); transition: all .7s cubic-bezier(.2,.6,.2,1); }
+    .reveal.show { opacity: 1; transform: translateY(0) scale(1); }
+
+    /* Glass card border */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Hide scrollbars on carousels for a tidy look */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-night-900 text-white antialiased">
+  <!-- Backdrop gradient -->
+  <div class="fixed inset-0 -z-10 bg-hero-gradient"></div>
+
+  <!-- Floating orbs -->
+  <div class="orb w-[400px] h-[400px] rounded-full bg-accent-500/20 top-10 right-[-150px]"></div>
+  <div class="orb w-[360px] h-[360px] rounded-full bg-neo-500/20 bottom-[-120px] left-[-120px]"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-night-900/55 backdrop-blur-xl border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative">
+            <svg width="36" height="36" viewBox="0 0 48 48" class="drop-shadow-md">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#7E5DFF"/>
+                  <stop offset="100%" stop-color="#18AEFF"/>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#g1)"/>
+              <path d="M15 26c4 0 6-9 9-9s5 9 9 9 6-3 6-3" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <circle cx="15" cy="26" r="2" fill="white"/>
+              <circle cx="33" cy="26" r="2" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-extrabold tracking-tight text-xl">ApexcifyTechnologys</p>
+            <p class="text-xs text-white/60 -mt-1">Studio</p>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-2">
+          <a href="#services" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">Services</a>
+          <a href="#work" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">Work</a>
+          <a href="#about" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">About</a>
+          <a href="#process" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">Process</a>
+          <a href="#testimonials" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">Testimonials</a>
+          <a href="#contact" class="px-3 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/5 transition">Contact</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-neo-500 to-accent-500 text-white font-semibold shadow-glow hover:shadow-soft transition">
+            <span>Get a Quote</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-90">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl glass hover:bg-white/10 transition" aria-label="Toggle menu">
+            <svg id="menuIcon" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg id="closeIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24">
+              <path d="M6 6l12 12M6 18L18 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/5">
+      <div class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-2">
+        <a href="#services" class="px-4 py-3 rounded-xl glass">Services</a>
+        <a href="#work" class="px-4 py-3 rounded-xl glass">Work</a>
+        <a href="#about" class="px-4 py-3 rounded-xl glass">About</a>
+        <a href="#process" class="px-4 py-3 rounded-xl glass">Process</a>
+        <a href="#testimonials" class="px-4 py-3 rounded-xl glass">Testimonials</a>
+        <a href="#contact" class="px-4 py-3 rounded-xl glass">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 md:pt-24">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-white/80 mb-5">
+            <span class="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+            Shipping production-ready sites since 2016
+          </div>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+            We design and build standout digital products
+          </h1>
+          <p class="mt-5 text-white/70 text-lg">
+            Strategy, design, and engineering—blended into one seamless team to launch faster and grow with confidence.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-neo-500 to-accent-500 font-semibold shadow-glow hover:shadow-soft transition">
+              Start a project
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <a href="#work" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl glass hover:bg-white/10 transition">
+              See our work
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path d="M5 12h14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Social proof -->
+          <div class="mt-10">
+            <p class="text-white/60 text-sm mb-3">Trusted by teams at</p>
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+              <!-- Simple SVG wordmarks -->
+              <div class="glass px-3 py-2 rounded-lg">
+                <span class="font-semibold tracking-wide text-white/80">Nimbus</span>
+              </div>
+              <div class="glass px-3 py-2 rounded-lg">
+                <span class="font-semibold tracking-wide text-white/80">Orion Labs</span>
+              </div>
+              <div class="glass px-3 py-2 rounded-lg">
+                <span class="font-semibold tracking-wide text-white/80">Vertex</span>
+              </div>
+              <div class="glass px-3 py-2 rounded-lg">
+                <span class="font-semibold tracking-wide text-white/80">NorthPeak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero visual -->
+        <div class="relative reveal">
+          <div class="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-neo-500/10 to-accent-500/10 blur-2xl"></div>
+          <div class="glass rounded-3xl p-6 md:p-8">
+            <!-- Faux dashboard -->
+            <div class="rounded-2xl bg-night-800/60 border border-white/5 overflow-hidden">
+              <div class="flex items-center gap-2 px-4 py-3 bg-night-700/60 border-b border-white/5">
+                <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-300/80"></span>
+                <span class="w-3 h-3 rounded-full bg-green-400/80"></span>
+                <span class="ml-3 text-xs text-white/60">analytics.novatech.studio</span>
+              </div>
+              <div class="p-6 grid md:grid-cols-3 gap-4">
+                <div class="col-span-2 glass rounded-xl p-4">
+                  <p class="text-sm text-white/70 mb-2">Weekly Visits</p>
+                  <svg viewBox="0 0 300 100" class="w-full h-28">
+                    <polyline fill="none" stroke="#18AEFF" stroke-width="3"
+                      points="0,80 40,70 80,75 120,60 160,50 200,40 240,35 280,30"/>
+                    <polyline fill="rgba(126,93,255,.15)" stroke="none"
+                      points="0,80 40,70 80,75 120,60 160,50 200,40 240,35 280,30 280,100 0,100"/>
+                  </svg>
+                </div>
+                <div class="glass rounded-xl p-4">
+                  <p class="text-sm text-white/70 mb-3">Conversion</p>
+                  <div class="flex items-end gap-2 h-24">
+                    <div class="w-4 bg-neo-500/40 rounded-t" style="height:40%"></div>
+                    <div class="w-4 bg-neo-500/60 rounded-t" style="height:56%"></div>
+                    <div class="w-4 bg-neo-500/70 rounded-t" style="height:65%"></div>
+                    <div class="w-4 bg-accent-500/70 rounded-t" style="height:80%"></div>
+                    <div class="w-4 bg-accent-500 rounded-t" style="height:92%"></div>
+                  </div>
+                </div>
+                <div class="glass rounded-xl p-4 md:col-span-3">
+                  <p class="text-sm text-white/70 mb-2">Top Channels</p>
+                  <div class="grid grid-cols-3 gap-3 text-sm">
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-white/5">
+                      <span>Organic</span><span class="text-white/70">42%</span>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-white/5">
+                      <span>Paid</span><span class="text-white/70">31%</span>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-white/5">
+                      <span>Referral</span><span class="text-white/70">27%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End faux dashboard -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="pt-20 md:pt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center mb-12">
+        <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">What we do</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Full-stack services</h2>
+        <p class="text-white/60 mt-3 max-w-2xl mx-auto">From idea to launch, we help you build, ship, and scale products people love.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Card -->
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-neo-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="#7E5DFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">Product Strategy</h3>
+          <p class="text-white/70 mt-2">Define clear goals, validate ideas, and map milestones for confident delivery.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>Discovery workshops</li>
+            <li>Roadmapping</li>
+            <li>KPIs & analytics</li>
+          </ul>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-accent-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path d="M12 3v18M3 12h18" stroke="#18AEFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">Brand & UI/UX</h3>
+          <p class="text-white/70 mt-2">Make it memorable with purposeful branding and beautiful, usable interfaces.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>Design systems</li>
+            <li>Prototyping</li>
+            <li>Accessibility</li>
+          </ul>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-neo-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path d="M5 5h14v14H5z" stroke="#7E5DFF" stroke-width="2" fill="none"/>
+              <path d="M9 9h6v6H9z" fill="#7E5DFF" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">Web & Mobile</h3>
+          <p class="text-white/70 mt-2">Robust, scalable apps with clean architecture and swift performance.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>Web apps</li>
+            <li>Mobile apps</li>
+            <li>APIs & integrations</li>
+          </ul>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-accent-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path d="M4 12h16M12 4v16" stroke="#18AEFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">E‑commerce</h3>
+          <p class="text-white/70 mt-2">High‑converting storefronts with smooth checkout and clear navigation.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>Headless stores</li>
+            <li>Catalog & search</li>
+            <li>Analytics</li>
+          </ul>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-neo-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path d="M6 18L18 6M6 6l12 12" stroke="#7E5DFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">Automation</h3>
+          <p class="text-white/70 mt-2">Save time with workflows, integrations, and smart data syncs.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>No-code + code</li>
+            <li>CRM integration</li>
+            <li>Data pipelines</li>
+          </ul>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-6 hover:bg-white/[0.08] transition">
+          <div class="w-12 h-12 rounded-xl bg-accent-500/20 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8" stroke="#18AEFF" stroke-width="2" fill="none"/>
+              <path d="M12 8v4l3 3" stroke="#18AEFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-xl">Growth & SEO</h3>
+          <p class="text-white/70 mt-2">Technical SEO and content strategy to turn traffic into traction.</p>
+          <ul class="text-white/60 text-sm mt-4 space-y-1 list-disc list-inside">
+            <li>Site audits</li>
+            <li>Performance</li>
+            <li>Content playbooks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work / Portfolio -->
+  <section id="work" class="pt-20 md:pt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">Selected work</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Recent projects</h2>
+          <p class="text-white/60 mt-3 max-w-xl">A few highlights from products we’ve shipped and supported.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button data-filter="all" class="filter-btn px-3 py-2 rounded-xl glass text-sm hover:bg-white/10 active">All</button>
+          <button data-filter="web" class="filter-btn px-3 py-2 rounded-xl glass text-sm hover:bg-white/10">Web</button>
+          <button data-filter="mobile" class="filter-btn px-3 py-2 rounded-xl glass text-sm hover:bg-white/10">Mobile</button>
+          <button data-filter="ecom" class="filter-btn px-3 py-2 rounded-xl glass text-sm hover:bg-white/10">E‑com</button>
+        </div>
+      </div>
+
+      <div id="workGrid" class="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+        <!-- Project card (SVG cover instead of images) -->
+        <a href="#contact" data-type="web" class="project glass rounded-2xl overflow-hidden group block">
+          <div class="relative h-40 bg-gradient-to-br from-neo-500/25 to-accent-500/25">
+            <svg viewBox="0 0 600 200" class="absolute inset-0 w-full h-full">
+              <defs>
+                <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#7E5DFF"/>
+                  <stop offset="100%" stop-color="#18AEFF"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 160 Q 150 120 300 160 T 600 160 L 600 200 L 0 200 Z" fill="url(#lg1)" opacity="0.35"/>
+              <circle cx="520" cy="50" r="8" fill="#18AEFF"/>
+              <rect x="40" y="40" width="160" height="16" rx="8" fill="white" opacity="0.75"/>
+              <rect x="40" y="70" width="260" height="12" rx="6" fill="white" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Nimbus Analytics</h3>
+              <span class="text-xs text-white/60 px-2 py-1 rounded-lg bg-white/5">Web</span>
+            </div>
+            <p class="text-white/60 text-sm mt-2">SaaS dashboard with real-time insights and multi-tenant access.</p>
+            <span class="inline-flex items-center gap-1 mt-3 text-accent-400 group-hover:gap-2 transition">
+              View case
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="#49C2FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#contact" data-type="mobile" class="project glass rounded-2xl overflow-hidden group block">
+          <div class="relative h-40 bg-gradient-to-br from-neo-500/25 to-accent-500/25">
+            <svg viewBox="0 0 600 200" class="absolute inset-0 w-full h-full">
+              <rect x="220" y="20" width="160" height="160" rx="24" fill="url(#lg1)"/>
+              <circle cx="300" cy="50" r="6" fill="white" opacity="0.8"/>
+              <rect x="260" y="80" width="80" height="10" rx="5" fill="white" opacity="0.7"/>
+              <rect x="250" y="100" width="100" height="10" rx="5" fill="white" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">Orion Fitness</h3>
+              <span class="text-xs text-white/60 px-2 py-1 rounded-lg bg-white/5">Mobile</span>
+            </div>
+            <p class="text-white/60 text-sm mt-2">iOS/Android app for tracking workouts and personalized plans.</p>
+            <span class="inline-flex items-center gap-1 mt-3 text-accent-400 group-hover:gap-2 transition">
+              View case
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="#49C2FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#contact" data-type="ecom" class="project glass rounded-2xl overflow-hidden group block">
+          <div class="relative h-40 bg-gradient-to-br from-neo-500/25 to-accent-500/25">
+            <svg viewBox="0 0 600 200" class="absolute inset-0 w-full h-full">
+              <rect x="60" y="30" width="260" height="140" rx="14" fill="url(#lg1)" opacity="0.8"/>
+              <rect x="340" y="60" width="200" height="80" rx="14" fill="white" opacity="0.08"/>
+              <rect x="80" y="50" width="160" height="14" rx="7" fill="white" opacity="0.9"/>
+              <rect x="80" y="72" width="120" height="10" rx="5" fill="white" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold">NorthPeak Store</h3>
+              <span class="text-xs text-white/60 px-2 py-1 rounded-lg bg-white/5">E‑com</span>
+            </div>
+            <p class="text-white/60 text-sm mt-2">Headless storefront with blazing-fast product discovery.</p>
+            <span class="inline-flex items-center gap-1 mt-3 text-accent-400 group-hover:gap-2 transition">
+              View case
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="#49C2FF" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Stats -->
+  <section id="about" class="pt-20 md:pt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="reveal">
+          <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">About us</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Small, senior, and fast</h2>
+          <p class="text-white/70 mt-4">We’re a compact team of designers, engineers, and strategists who’ve shipped products used by millions. We collaborate closely, communicate clearly, and obsess over details.</p>
+          <div class="mt-6 grid grid-cols-2 gap-4">
+            <div class="glass rounded-xl p-4">
+              <p class="text-3xl font-extrabold">120+</p>
+              <p class="text-sm text-white/60">Projects shipped</p>
+            </div>
+            <div class="glass rounded-xl p-4">
+              <p class="text-3xl font-extrabold">8 yrs</p>
+              <p class="text-sm text-white/60">Avg team exp.</p>
+            </div>
+            <div class="glass rounded-xl p-4">
+              <p class="text-3xl font-extrabold">98%</p>
+              <p class="text-sm text-white/60">Client retention</p>
+            </div>
+            <div class="glass rounded-xl p-4">
+              <p class="text-3xl font-extrabold">24/7</p>
+              <p class="text-sm text-white/60">Support coverage</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal glass rounded-3xl p-6 md:p-8">
+          <h3 class="font-semibold text-xl">Capabilities snapshot</h3>
+          <div class="mt-5 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-white/70 text-sm">Frontend</p>
+              <div class="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div class="h-2 rounded-full bg-gradient-to-r from-neo-500 to-accent-500" style="width: 92%;"></div>
+              </div>
+            </div>
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-white/70 text-sm">Backend</p>
+              <div class="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div class="h-2 rounded-full bg-gradient-to-r from-neo-500 to-accent-500" style="width: 88%;"></div>
+              </div>
+            </div>
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-white/70 text-sm">Mobile</p>
+              <div class="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div class="h-2 rounded-full bg-gradient-to-r from-neo-500 to-accent-500" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-white/70 text-sm">DevOps</p>
+              <div class="w-full h-2 bg-white/10 rounded-full mt-2">
+                <div class="h-2 rounded-full bg-gradient-to-r from-neo-500 to-accent-500" style="width: 76%;"></div>
+              </div>
+            </div>
+          </div>
+          <p class="text-white/60 text-xs mt-4">Note: This is a demo site—no external data or credentials are used.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="pt-20 md:pt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center mb-12">
+        <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">How we work</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Our process</h2>
+        <p class="text-white/60 mt-3 max-w-2xl mx-auto">A simple, transparent path from first chat to launch.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="reveal glass rounded-2xl p-6">
+          <div class="text-accent-400 font-extrabold text-2xl">01</div>
+          <h3 class="font-semibold mt-1">Discover</h3>
+          <p class="text-white/70 mt-2 text-sm">Workshops to align on goals, users, and success metrics.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6">
+          <div class="text-accent-400 font-extrabold text-2xl">02</div>
+          <h3 class="font-semibold mt-1">Design</h3>
+          <p class="text-white/70 mt-2 text-sm">Rapid prototypes and a scalable design system.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6">
+          <div class="text-accent-400 font-extrabold text-2xl">03</div>
+          <h3 class="font-semibold mt-1">Build</h3>
+          <p class="text-white/70 mt-2 text-sm">Agile sprints with weekly demos and clear updates.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6">
+          <div class="text-accent-400 font-extrabold text-2xl">04</div>
+          <h3 class="font-semibold mt-1">Grow</h3>
+          <p class="text-white/70 mt-2 text-sm">Launch, measure, iterate—then scale what works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="pt-20 md:pt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal text-center mb-10">
+        <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">What clients say</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Kind words</h2>
+      </div>
+
+      <div class="relative">
+        <div id="carousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2">
+          <!-- Slide -->
+          <div class="reveal snap-start min-w-[85%] sm:min-w-[420px] glass rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-neo-500 to-accent-500"></div>
+              <div>
+                <p class="font-semibold">Amelia Rhodes</p>
+                <p class="text-xs text-white/60">Head of Product, Nimbus</p>
+              </div>
+            </div>
+            <p class="text-white/80 mt-4">They shipped in weeks what took us months to plan. Clean design, great communication, and results that moved the needle.</p>
+          </div>
+          <div class="reveal snap-start min-w-[85%] sm:min-w-[420px] glass rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-neo-500 to-accent-500"></div>
+              <div>
+                <p class="font-semibold">Jasper Nguyen</p>
+                <p class="text-xs text-white/60">CTO, Orion Labs</p>
+              </div>
+            </div>
+            <p class="text-white/80 mt-4">Senior team that truly owns the outcome. We launched ahead of schedule with performance to spare.</p>
+          </div>
+          <div class="reveal snap-start min-w-[85%] sm:min-w-[420px] glass rounded-2xl p-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-neo-500 to-accent-500"></div>
+              <div>
+                <p class="font-semibold">Maya Patel</p>
+                <p class="text-xs text-white/60">Founder, NorthPeak</p>
+              </div>
+            </div>
+            <p class="text-white/80 mt-4">Best partner we’ve had—strategic, fast, and thoughtful at every step.</p>
+          </div>
+        </div>
+        <!-- Controls -->
+        <div class="flex items-center justify-center gap-3 mt-5">
+          <button id="prevSlide" class="px-3 py-2 rounded-xl glass hover:bg-white/10">Prev</button>
+          <button id="nextSlide" class="px-3 py-2 rounded-xl glass hover:bg-white/10">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (Demo) -->
+  <section id="contact" class="pt-20 md:pt-28 pb-16 md:pb-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal grid lg:grid-cols-2 gap-10">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full glass text-xs text-white/70">Contact</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold mt-3">Tell us about your project</h2>
+          <p class="text-white/70 mt-3">Share a few details and we’ll reply within 1 business day.</p>
+
+          <div class="mt-6 space-y-3 text-sm text-white/60">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path d="M4 4h16v12H5l-1 4V4z" stroke="white" opacity=".7" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+              info@ApexcifyTechnologys.studio
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path d="M6 2h12v20H6z" stroke="white" opacity=".7" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+              +44 443 234‑8890
+            </div>
+          </div>
+
+          <p class="text-xs text-white/50 mt-6"></p>
+        </div>
+
+        <div class="glass rounded-3xl p-6 md:p-8">
+          <form id="contactForm" class="space-y-4">
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Name</label>
+              <input required type="text" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent-500/60" placeholder="Your name">
+            </div>
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Email</label>
+              <input required type="email" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent-500/60" placeholder="you@email.com">
+            </div>
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Project Type</label>
+              <select class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent-500/60">
+                <option>Website</option>
+                <option>Mobile App</option>
+                <option>E‑commerce</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Budget</label>
+              <div class="flex gap-2">
+                <button type="button" data-budget="$5k–$10k" class="budget-btn flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">5k–10k</button>
+                <button type="button" data-budget="$10k–$25k" class="budget-btn flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">10k–25k</button>
+                <button type="button" data-budget="$25k+" class="budget-btn flex-1 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10">$25k+</button>
+              </div>
+              <input type="hidden" id="budgetInput" value="">
+            </div>
+            <div>
+              <label class="block text-sm text-white/70 mb-1">Message</label>
+              <textarea rows="4" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent-500/60" placeholder="What are you building?"></textarea>
+            </div>
+            <button class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-neo-500 to-accent-500 font-semibold shadow-glow hover:shadow-soft transition">
+              Send message
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <svg width="28" height="28" viewBox="0 0 48 48">
+            <defs>
+              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7E5DFF"/>
+                <stop offset="100%" stop-color="#18AEFF"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#g2)"/>
+          </svg>
+          <span class="font-semibold">NovaTech Studio</span>
+        </div>
+        <div class="text-white/60 text-sm">© <span id="year"></span> ApexcifyTechnologys. All rights reserved.</div>
+        <div class="flex items-center gap-3">
+          <a href="#services" class="px-3 py-2 rounded-lg glass hover:bg-white/10">Services</a>
+          <a href="#work" class="px-3 py-2 rounded-lg glass hover:bg-white/10">Work</a>
+          <a href="#contact" class="px-3 py-2 rounded-lg glass hover:bg-white/10">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 hidden">
+    <div class="glass rounded-xl px-4 py-3 flex items-center gap-3 border border-emerald-400/30">
+      <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+      <p class="text-sm">Thanks! Your message was received (demo).</p>
+    </div>
+  </div>
+
+  <button id="backToTop" aria-label="Back to top" class="fixed hidden bottom-6 right-6 p-3 rounded-xl glass hover:bg-white/10">
+    <svg width="18" height="18" viewBox="0 0 24 24">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </button>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+          // Close mobile menu if open
+          if (!document.getElementById('mobileNav').classList.contains('hidden')) toggleMenu(false);
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    function toggleMenu(force) {
+      const willOpen = force !== undefined ? force : mobileNav.classList.contains('hidden');
+      mobileNav.classList.toggle('hidden', !willOpen);
+      menuIcon.classList.toggle('hidden', willOpen);
+      closeIcon.classList.toggle('hidden', !willOpen);
+    }
+    menuBtn.addEventListener('click', () => toggleMenu());
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active', 'bg-white/10'));
+        btn.classList.add('active', 'bg-white/10');
+        const type = btn.dataset.filter;
+        projects.forEach(card => {
+          const show = type === 'all' || card.dataset.type === type;
+          card.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Testimonials carousel controls
+    const carousel = document.getElementById('carousel');
+    document.getElementById('prevSlide').addEventListener('click', () => {
+      carousel.scrollBy({ left: -carousel.clientWidth * 0.9, behavior: 'smooth' });
+    });
+    document.getElementById('nextSlide').addEventListener('click', () => {
+      carousel.scrollBy({ left: carousel.clientWidth * 0.9, behavior: 'smooth' });
+    });
+
+    // Auto-advance carousel every 6s
+    let auto = setInterval(() => {
+      carousel.scrollBy({ left: carousel.clientWidth * 0.9, behavior: 'smooth' });
+    }, 6000);
+    carousel.addEventListener('mouseenter', () => clearInterval(auto));
+    carousel.addEventListener('mouseleave', () => {
+      auto = setInterval(() => {
+        carousel.scrollBy({ left: carousel.clientWidth * 0.9, behavior: 'smooth' });
+      }, 6000);
+    });
+
+    // Budget buttons
+    const budgetBtns = document.querySelectorAll('.budget-btn');
+    const budgetInput = document.getElementById('budgetInput');
+    budgetBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        budgetBtns.forEach(x => x.classList.remove('ring-2', 'ring-accent-500/60', 'bg-white/10'));
+        b.classList.add('ring-2', 'ring-accent-500/60', 'bg-white/10');
+        budgetInput.value = b.dataset.budget;
+      });
+    });
+
+    // Contact form (Demo)
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Show toast
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+      // Reset form
+      form.reset();
+      budgetBtns.forEach(x => x.classList.remove('ring-2', 'ring-accent-500/60', 'bg-white/10'));
+      budgetInput.value = '';
+    });
+
+    // Back to top button
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('hidden', window.scrollY < 400);
+    });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'980f11af9779a41c',t:'MTc1ODE3OTkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
