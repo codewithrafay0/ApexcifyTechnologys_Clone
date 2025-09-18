@@ -10,9 +10,6 @@ Features include:
 - Back-to-top button  
 - Modern dark theme  
 
-## 🔗 Live Demo  
-[View on GitHub Pages](https://codewithrafay0.github.io/ApexcifyTechnologys_Clone/)
-
 ## 🛠️ Tech Stack
 - HTML5  
 - TailwindCSS  
